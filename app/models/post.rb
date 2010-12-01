@@ -21,6 +21,6 @@ class Post < Model
   end
   
   def blogger
-    User.new(blogger_id)
+    Blogger.new(blogger_id)
   end
 end
