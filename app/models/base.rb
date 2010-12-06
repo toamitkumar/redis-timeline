@@ -25,4 +25,8 @@ class Base
       end
     RUBY
   end
+  
+  def redis
+    @redis ||= Redis.new  
+  end
 end
