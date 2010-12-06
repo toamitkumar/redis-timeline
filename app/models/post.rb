@@ -14,22 +14,10 @@ class Post < Base
       follower.add_timeline_post(post)
     end    
   end
-    
-  def blogger
-    Blogger.new(blogger_id)
-  end
   
   def add_activity(activity)
     set_name = activity.class.name.downcase.pluralize
     redis.lpush("post:id:#{id}:#{set_name}", activity.id)
-  end
-  
-  def add_comment(comment)
-    redis.lpush("post:id:#{id}:comments", comment.id)
-  end
-  
-  def add_likeables(like)
-    redis.lpush("post:id:#{id}:likeables", like.id)
   end
   
   def comments(page=1)
@@ -39,10 +27,14 @@ class Post < Base
     end
   end
   
-  def likeabls(page=1)
+  def likeables(page=1)
     from, to = (page-1)*10, page*10
     redis.lrange("post:id:#{id}:likeables", from, to).map do |likeable_id|
       MessageLike.new(likeable_id)
     end
+  end
+  
+  def blogger
+    Blogger.new(blogger_id)
   end
 end
