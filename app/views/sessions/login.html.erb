@@ -1,0 +1,12 @@
+<fieldset>
+  <legend>Login</legend>
+  <ul>
+  <%Blogger.all_bloggers do |blogger| -%>
+    <li><%="#{blogger.name} - #{blogger.vendor_individual_id}"%></li>
+  <%end -%>
+  </ul>
+  <%form_for(:session, :url => sessions_url) do |f|%>
+    Perosn Id: <%=f.text_field 'person_id'%><br />
+    <%=f.submit 'Submit'%>
+  <%end%>
+</fieldset>

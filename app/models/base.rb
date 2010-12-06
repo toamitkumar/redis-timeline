@@ -1,4 +1,6 @@
 class Base
+  attr_reader :id
+  
   def initialize(id)
     @id = id
   end
@@ -6,8 +8,6 @@ class Base
   def ==(other)
     @id.to_s == other.id.to_s
   end
-  
-  attr_reader :id
   
   def self.property(name)
     klass = self.name.downcase
@@ -24,9 +24,5 @@ class Base
         redis.set("#{klass}:id:" + id.to_s + ":#{name}", val)
       end
     RUBY
-  end
-  
-  def redis
-    @redis ||= Redis.new  
   end
 end

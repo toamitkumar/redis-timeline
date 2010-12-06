@@ -16,6 +16,12 @@ class Blogger < Base
     end
   end
   
+  def self.all_bloggers
+    redis.lrange("bloggers", 0, 10).collect do |blogger_id|
+      Blogger.new(blogger_id)
+    end
+  end
+  
   def self.find_by_name(bloggername)
     if id = redis.get("blogger:name:#{bloggername}")
       Blogger.new(id)
