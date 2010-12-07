@@ -1,4 +1,4 @@
-desc "create users"
+  desc "create users"
 namespace :redis do
   task :create_users => [:environment] do
     bloggers = [

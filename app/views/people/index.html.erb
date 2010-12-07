@@ -1,0 +1,17 @@
+<fieldset class="post">
+  <legend>Post Message</legend>
+  <div>
+  <%=form_for :message, :url => messages_url(:vendor_individual_id => current_user.vendor_individual_id), :remote => true, :html => {:id => "post_form"} do |f| -%>
+    <%=f.text_area :body, :rows => 1, :cols => 100%><br />
+    <input name="commit" type="button" id="post_button" value="Post Message" />
+  <%end -%>
+  </div>
+</fieldset>
+<div>
+  <p>Colleague news</p> <br/>
+  <div id="feeds">
+  <%@news_feed.each do |feed| -%>
+    <p id="<%=feed.id%>"><%=JSON.parse(feed.content)["body"]%>&nbsp;<%=JSON.parse(feed.content)["created_at"]%></p>
+  <%end -%>
+  </div>
+</div>

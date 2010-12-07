@@ -1,0 +1,2 @@
+class MessageLikesController < ApplicationController
+end

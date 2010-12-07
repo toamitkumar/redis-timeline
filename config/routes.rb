@@ -1,6 +1,12 @@
 RedisTimeline::Application.routes.draw do
-  resources :people
+  resources :people, :only => [:index, :show]
   resources :sessions
+  scope "people/:vendor_individual_id" do
+   resources :messages do
+     resources :comments, :message_likes
+   end 
+  end
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

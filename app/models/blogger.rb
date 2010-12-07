@@ -54,19 +54,32 @@ class Blogger < Base
   end
   
   def timeline(page=1)
-    from, to = (page-1)*10, page*10
+    from, to = (page-1)*10, page*100
     redis.lrange("blogger:id:#{id}:timeline", from, to).map do |post_id|
       Post.new(post_id)
     end
   end
   
   def add_post(post)
-    redis.lpush("blogger:id:#{id}:posts", post.id)
+#    redis.multi do 
+      redis.lpush("blogger:id:#{id}:posts", post.id)
+      add_post_to_timeline(post)
+#    end
+  end
+  
+  def remove_post(post)
+#    redis.multi do
+      redis.lrem("blogger:id:#{id}:posts", 1, post.id)
+      remove_post_from_timeline(post)
+#    end
+  end
+  
+  def add_post_to_timeline(post)
     redis.lpush("blogger:id:#{id}:timeline", post.id)
   end
   
-  def add_timeline_post(post)
-    redis.lpush("blogger:id:#{id}:timeline", post.id)
+  def remove_post_from_timeline(post)
+    redis.lrem("blogger:id:#{id}:timeline", 1, post.id)
   end
   
   def add_activity(activity)

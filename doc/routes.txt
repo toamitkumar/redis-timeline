@@ -1,0 +1,32 @@
+(in /host/rails_apps/redis-timeline)
+                   people GET    /people(.:format)                                                                   {:action=>"index", :controller=>"people"}
+                   person GET    /people/:id(.:format)                                                               {:action=>"show", :controller=>"people"}
+                 sessions GET    /sessions(.:format)                                                                 {:action=>"index", :controller=>"sessions"}
+                          POST   /sessions(.:format)                                                                 {:action=>"create", :controller=>"sessions"}
+              new_session GET    /sessions/new(.:format)                                                             {:action=>"new", :controller=>"sessions"}
+             edit_session GET    /sessions/:id/edit(.:format)                                                        {:action=>"edit", :controller=>"sessions"}
+                  session GET    /sessions/:id(.:format)                                                             {:action=>"show", :controller=>"sessions"}
+                          PUT    /sessions/:id(.:format)                                                             {:action=>"update", :controller=>"sessions"}
+                          DELETE /sessions/:id(.:format)                                                             {:action=>"destroy", :controller=>"sessions"}
+         message_comments GET    /people/:vendor_individual_id/messages/:message_id/comments(.:format)               {:action=>"index", :controller=>"comments"}
+                          POST   /people/:vendor_individual_id/messages/:message_id/comments(.:format)               {:action=>"create", :controller=>"comments"}
+      new_message_comment GET    /people/:vendor_individual_id/messages/:message_id/comments/new(.:format)           {:action=>"new", :controller=>"comments"}
+     edit_message_comment GET    /people/:vendor_individual_id/messages/:message_id/comments/:id/edit(.:format)      {:action=>"edit", :controller=>"comments"}
+          message_comment GET    /people/:vendor_individual_id/messages/:message_id/comments/:id(.:format)           {:action=>"show", :controller=>"comments"}
+                          PUT    /people/:vendor_individual_id/messages/:message_id/comments/:id(.:format)           {:action=>"update", :controller=>"comments"}
+                          DELETE /people/:vendor_individual_id/messages/:message_id/comments/:id(.:format)           {:action=>"destroy", :controller=>"comments"}
+    message_message_likes GET    /people/:vendor_individual_id/messages/:message_id/message_likes(.:format)          {:action=>"index", :controller=>"message_likes"}
+                          POST   /people/:vendor_individual_id/messages/:message_id/message_likes(.:format)          {:action=>"create", :controller=>"message_likes"}
+ new_message_message_like GET    /people/:vendor_individual_id/messages/:message_id/message_likes/new(.:format)      {:action=>"new", :controller=>"message_likes"}
+edit_message_message_like GET    /people/:vendor_individual_id/messages/:message_id/message_likes/:id/edit(.:format) {:action=>"edit", :controller=>"message_likes"}
+     message_message_like GET    /people/:vendor_individual_id/messages/:message_id/message_likes/:id(.:format)      {:action=>"show", :controller=>"message_likes"}
+                          PUT    /people/:vendor_individual_id/messages/:message_id/message_likes/:id(.:format)      {:action=>"update", :controller=>"message_likes"}
+                          DELETE /people/:vendor_individual_id/messages/:message_id/message_likes/:id(.:format)      {:action=>"destroy", :controller=>"message_likes"}
+                 messages GET    /people/:vendor_individual_id/messages(.:format)                                    {:action=>"index", :controller=>"messages"}
+                          POST   /people/:vendor_individual_id/messages(.:format)                                    {:action=>"create", :controller=>"messages"}
+              new_message GET    /people/:vendor_individual_id/messages/new(.:format)                                {:action=>"new", :controller=>"messages"}
+             edit_message GET    /people/:vendor_individual_id/messages/:id/edit(.:format)                           {:action=>"edit", :controller=>"messages"}
+                  message GET    /people/:vendor_individual_id/messages/:id(.:format)                                {:action=>"show", :controller=>"messages"}
+                          PUT    /people/:vendor_individual_id/messages/:id(.:format)                                {:action=>"update", :controller=>"messages"}
+                          DELETE /people/:vendor_individual_id/messages/:id(.:format)                                {:action=>"destroy", :controller=>"messages"}
+                     root        /(.:format)                                                                         {:controller=>"sessions", :action=>"login"}
