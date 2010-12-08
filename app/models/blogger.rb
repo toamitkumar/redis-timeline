@@ -47,14 +47,18 @@ class Blogger < Base
   end
   
   def posts(page=1)
-    from, to = (page-1)*10, page*10
+    from, to = (page-1)*10, page*9
     redis.lrange("blogger:id:#{id}:posts", from, to).map do |post_id|
       Post.new(post_id)
     end
   end
   
+  def posts_count
+    redis.llen("blogger:id:#{id}:posts")
+  end
+  
   def timeline(page=1)
-    from, to = (page-1)*10, page*100
+    from, to = (page-1)*10, page*9
     redis.lrange("blogger:id:#{id}:timeline", from, to).map do |post_id|
       Post.new(post_id)
     end

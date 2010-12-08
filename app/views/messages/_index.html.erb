@@ -1,0 +1,3 @@
+<%news_feed.each do |feed| -%>
+  <%=render :partial => "messages/post_row", :locals => {:feed => feed, :blogger => feed.blogger}%>
+<%end -%>

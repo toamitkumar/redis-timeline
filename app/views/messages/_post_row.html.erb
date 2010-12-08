@@ -1,0 +1,7 @@
+<div class="row">
+<div class="tweet">
+<div><%=link_to blogger.name, person_url(blogger.vendor_individual_id)%></div>
+<div id="<%=feed.id%>"><%=JSON.parse(feed.content)["body"]%>&nbsp; - <%=time_ago_in_words(Time.parse(JSON.parse(feed.content)["created_at"]))%> ago</div>
+<div><%=link_to "Delete", message_url(:id => feed.id, :vendor_individual_id => blogger.vendor_individual_id), :class => "message_delete"%></div>
+</div>
+</div>

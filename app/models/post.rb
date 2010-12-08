@@ -18,6 +18,12 @@ class Post < Base
     post
   end
   
+  def self.find_by_id(id)
+    if redis.exists("post:id:#{id}:blogger_id")
+      Post.new(id)
+    end
+  end
+  
   def destroy
 #    redis.multi do 
       blogger.remove_post(self)

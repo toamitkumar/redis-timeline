@@ -8,10 +8,12 @@
   </div>
 </fieldset>
 <div>
-  <p>Colleague news</p> <br/>
+  <p>Colleague news (<%=@user.posts_count%>)</p> <br/>
   <div id="feeds">
-  <%@news_feed.each do |feed| -%>
-    <p id="<%=feed.id%>"><%=JSON.parse(feed.content)["body"]%>&nbsp;<%=JSON.parse(feed.content)["created_at"]%></p>
-  <%end -%>
+  <%=render :partial => "messages/index", :locals => {:news_feed => @news_feed}%>
   </div>
 </div>
+<br />
+<%if(more_feed?(@user, params[:page])) -%>
+  <div><%=link_to "Older Posts", messages_url(:vendor_individual_id => @user.vendor_individual_id, :page => (params[:page] || 2).to_i), :id => "older_posts"%></div>
+<%end -%>
